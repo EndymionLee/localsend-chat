@@ -6,6 +6,16 @@ A LAN chat-enhanced fork of [LocalSend](https://github.com/localsend/localsend),
 
 > Original Project: [https://github.com/localsend/localsend](https://github.com/localsend/localsend) | Website: [https://localsend.org](https://localsend.org) | License: [Apache License 2.0](LICENSE)
 
+## Screenshots
+
+### Windows Desktop
+
+<img src="img/1.png" alt="Chat list" width="400"/> <img src="img/2.png" alt="Chat conversation" width="400"/>
+
+### Android
+
+<img src="img/3.jpg" alt="Chat list" width="200"/> <img src="img/4.jpg" alt="Chat conversation" width="200"/>
+
 ## Features
 
 ### Chat

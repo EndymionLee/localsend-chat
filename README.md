@@ -6,6 +6,16 @@
 
 > 原项目：[https://github.com/localsend/localsend](https://github.com/localsend/localsend) | 官网：[https://localsend.org](https://localsend.org) | 协议：[Apache License 2.0](LICENSE)
 
+## 截图
+
+### Windows 桌面端
+
+<img src="img/1.png" alt="Chat list" width="400"/> <img src="img/2.png" alt="Chat conversation" width="400"/>
+
+### Android 手机端
+
+<img src="img/3.jpg" alt="Chat list" width="200"/> <img src="img/4.jpg" alt="Chat conversation" width="200"/>
+
 ## 新增功能
 
 ### 聊天
@@ -25,6 +35,20 @@
 | ------- | --------------------------------------------------------------- |
 | Android | [Releases](https://github.com/EndymionLee/localsend-chat/releases) |
 | Windows | [Releases](https://github.com/EndymionLee/localsend-chat/releases) |
+
+## 构建
+
+```bash
+cd app
+flutter pub get
+
+# Windows
+flutter build windows
+
+# Android（需要 4GB+ 可用内存）
+$env:RUST_MIN_STACK = 16777216
+flutter build apk --debug
+```
 
 ## 协议
 
