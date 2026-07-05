@@ -228,6 +228,7 @@ class SendTab extends StatelessWidget {
                               nameOverride: favoriteEntry?.alias,
                               onFavoriteTap: () async => await vm.onToggleFavorite(context, device),
                               onTap: () async => await vm.onTapDevice(context, device),
+                              onChatTap: () async => await vm.onTapChat(context, device),
                             ),
                     ),
                   );

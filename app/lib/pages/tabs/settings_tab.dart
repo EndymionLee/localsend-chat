@@ -265,6 +265,19 @@ class SettingsTab extends StatelessWidget {
                         ),
                       ],
                     ),
+                  if (vm.advanced)
+                    _SettingsSection(
+                      title: 'Chat / Clipboard',
+                      children: [
+                        _BooleanEntry(
+                          label: 'Shared Clipboard (copy on one device → paste on all)',
+                          value: vm.settings.sharedClipboard,
+                          onChanged: (b) async {
+                            await ref.notifier(settingsProvider).setSharedClipboard(b);
+                          },
+                        ),
+                      ],
+                    ),
                   _SettingsSection(
                     title: t.settingsTab.network.title,
                     children: [

@@ -10,6 +10,8 @@ import 'package:localsend_app/pages/home_page_controller.dart';
 import 'package:localsend_app/pages/tabs/receive_tab.dart';
 import 'package:localsend_app/pages/tabs/send_tab.dart';
 import 'package:localsend_app/pages/tabs/settings_tab.dart';
+import 'package:localsend_app/pages/chat/chat_list_page.dart';
+import 'package:localsend_app/pages/chat/clipboard_sync_watcher.dart';
 import 'package:localsend_app/provider/selection/selected_sending_files_provider.dart';
 import 'package:localsend_app/util/native/cross_file_converters.dart';
 import 'package:localsend_app/util/native/platform_check.dart';
@@ -17,6 +19,7 @@ import 'package:localsend_app/widget/responsive_builder.dart';
 import 'package:refena_flutter/refena_flutter.dart';
 
 enum HomeTab {
+  chat(Icons.chat),
   receive(Icons.wifi),
   send(Icons.send),
   settings(Icons.settings);
@@ -27,6 +30,8 @@ enum HomeTab {
 
   String get label {
     switch (this) {
+      case HomeTab.chat:
+        return t.chatTab.title;
       case HomeTab.receive:
         return t.receiveTab.title;
       case HomeTab.send:
@@ -120,9 +125,9 @@ class _HomePageState extends State<HomePage> with Refena {
                                       ? // considered adding some extra space so it looks more natural
                                         SizedBox(height: 40)
                                       : SizedBox(height: 20),
-                                  const Text(
-                                    'LocalSend',
-                                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                                  Text(
+                                    t.appName,
+                                    style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                                     textAlign: TextAlign.center,
                                   ),
                                   SizedBox(height: 20),
@@ -156,10 +161,11 @@ class _HomePageState extends State<HomePage> with Refena {
                       PageView(
                         controller: vm.controller,
                         physics: const NeverScrollableScrollPhysics(),
-                        children: const [
-                          SafeArea(child: ReceiveTab()),
-                          SafeArea(child: SendTab()),
-                          SettingsTab(),
+                        children: [
+                          const SafeArea(child: ClipboardSyncWatcher(child: ChatListPage())),
+                          const SafeArea(child: ReceiveTab()),
+                          const SafeArea(child: SendTab()),
+                          const SettingsTab(),
                         ],
                       ),
                       if (_dragAndDropIndicator)

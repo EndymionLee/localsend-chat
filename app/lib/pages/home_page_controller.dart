@@ -23,7 +23,7 @@ class HomePageController extends ReduxNotifier<HomePageVm> {
   HomePageVm init() {
     return HomePageVm(
       controller: PageController(),
-      currentTab: HomeTab.receive,
+      currentTab: HomeTab.chat,
       changeTab: (tab) => redux.dispatch(ChangeTabAction(tab)),
     );
   }
@@ -36,7 +36,11 @@ class ChangeTabAction extends ReduxAction<HomePageController, HomePageVm> {
 
   @override
   HomePageVm reduce() {
-    state.controller.jumpToPage(tab.index);
+    state.controller.animateToPage(
+      tab.index,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
     return HomePageVm(
       controller: state.controller,
       currentTab: tab,

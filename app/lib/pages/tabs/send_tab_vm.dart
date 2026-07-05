@@ -4,7 +4,9 @@ import 'package:common/model/session_status.dart';
 import 'package:flutter/material.dart';
 import 'package:localsend_app/model/cross_file.dart';
 import 'package:localsend_app/model/persistence/favorite_device.dart';
+import 'package:localsend_app/provider/security_provider.dart';
 import 'package:localsend_app/model/send_mode.dart';
+import 'package:localsend_app/pages/chat/chat_page.dart';
 import 'package:localsend_app/pages/progress_page.dart';
 import 'package:localsend_app/pages/send_page.dart';
 import 'package:localsend_app/pages/web_send_page.dart';
@@ -36,6 +38,7 @@ class SendTabVm {
   final Future<void> Function(BuildContext context, Device device) onToggleFavorite;
   final Future<void> Function(BuildContext context, Device device) onTapDevice;
   final Future<void> Function(BuildContext context, Device device) onTapDeviceMultiSend;
+  final Future<void> Function(BuildContext context, Device device) onTapChat;
 
   const SendTabVm({
     required this.sendMode,
@@ -49,6 +52,7 @@ class SendTabVm {
     required this.onToggleFavorite,
     required this.onTapDevice,
     required this.onTapDeviceMultiSend,
+    required this.onTapChat,
   });
 }
 
@@ -190,6 +194,17 @@ final sendTabVmProvider = ViewProvider((ref) {
             files: files,
             background: true,
           );
+    },
+    onTapChat: (context, device) async {
+      final myFp = ref.read(securityProvider).certificateHash;
+      if (device.fingerprint == myFp) return; // Can't chat with yourself.
+      await context.push(() => ChatPage(
+        fingerprint: device.fingerprint,
+        alias: device.alias,
+        ip: device.ip!,
+        port: device.port,
+        https: device.https,
+      ));
     },
   );
 });

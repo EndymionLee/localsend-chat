@@ -1,5 +1,11 @@
 .idea
 
+# Build outputs
+build/
+*.apk
+*.zip
+/release/
+
 # Linux AppImage
 /app/AppDir
 /app/appimage-build
@@ -10,3 +16,9 @@
 
 # FVM Version Cache
 .fvm/
+
+# OS files
+.DS_Store
+Thumbs.db
+*.log
+**/.gradle/

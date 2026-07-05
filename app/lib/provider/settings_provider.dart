@@ -70,6 +70,7 @@ class SettingsService extends PureNotifier<SettingsState> {
     shareViaLinkAutoAccept: _persistence.getShareViaLinkAutoAccept(),
     discoveryTimeout: _persistence.getDiscoveryTimeout(),
     advancedSettings: _persistence.getAdvancedSettingsEnabled(),
+    sharedClipboard: _persistence.isSharedClipboard(),
   );
 
   Future<void> setAlias(String alias) async {
@@ -95,9 +96,12 @@ class SettingsService extends PureNotifier<SettingsState> {
 
   Future<void> setAdvancedSettingsEnabled(bool isEnabled) async {
     await _persistence.setAdvancedSettingsEnabled(isEnabled);
-    state = state.copyWith(
-      advancedSettings: isEnabled,
-    );
+    state = state.copyWith(advancedSettings: isEnabled);
+  }
+
+  Future<void> setSharedClipboard(bool enabled) async {
+    await _persistence.setSharedClipboard(enabled);
+    state = state.copyWith(sharedClipboard: enabled);
   }
 
   Future<void> setLocale(AppLocale? locale) async {

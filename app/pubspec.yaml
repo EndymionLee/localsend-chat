@@ -1,6 +1,6 @@
 name: localsend_app
-description: An open source cross-platform alternative to AirDrop
-homepage: https://localsend.org/
+description: LocalSend Chat - LAN chat and file sharing with group support
+homepage: https://github.com/EndymionLee/localsend-chat
 publish_to: "none"
 
 version: 1.17.0+58
@@ -90,9 +90,10 @@ dev_dependencies:
   mockito: 5.5.0
   refena_inspector: 2.1.0
   slang_build_runner: 4.9.0
-  test: ^1.26.2
 
 dependency_overrides:
+  gal:
+    path: local_packages/gal
   device_apps:
     # Migrate to another maintained package to fetch installed apps on Android
     git:

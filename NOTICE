@@ -1,0 +1,19 @@
+LocalSend Chat
+Copyright 2024-2026 (see individual files for details)
+
+This product is based on LocalSend (https://github.com/localsend/localsend),
+created by Tien Do Nam, and licensed under the Apache License, Version 2.0.
+
+Original work: Copyright 2022-2024 Tien Do Nam
+
+Modifications:
+- Added LAN chat functionality (1:1 and group chat)
+- Added Telegram-style chat UI with copy support
+- Added shared clipboard feature
+- Added file sharing in chat with inline image preview
+- Added chat history persistence
+- Reordered tabs (Chat first)
+- Various bug fixes and improvements
+
+For the original LocalSend project, see:
+https://github.com/localsend/localsend

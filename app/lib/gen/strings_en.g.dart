@@ -46,11 +46,12 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
   /// en: 'English'
   String get locale => 'English';
 
-  /// en: 'LocalSend'
-  String get appName => 'LocalSend';
+  /// en: 'LocalSend Chat'
+  String get appName => 'LocalSend Chat';
 
   late final TranslationsGeneralEn general = TranslationsGeneralEn.internal(_root);
   late final TranslationsReceiveTabEn receiveTab = TranslationsReceiveTabEn.internal(_root);
+  late final TranslationsChatTabEn chatTab = TranslationsChatTabEn.internal(_root);
   late final TranslationsSendTabEn sendTab = TranslationsSendTabEn.internal(_root);
   late final TranslationsSettingsTabEn settingsTab = TranslationsSettingsTabEn.internal(_root);
   late final TranslationsTroubleshootPageEn troubleshootPage = TranslationsTroubleshootPageEn.internal(_root);
@@ -210,6 +211,36 @@ class TranslationsReceiveTabEn {
 
   late final TranslationsReceiveTabInfoBoxEn infoBox = TranslationsReceiveTabInfoBoxEn.internal(_root);
   late final TranslationsReceiveTabQuickSaveEn quickSave = TranslationsReceiveTabQuickSaveEn.internal(_root);
+}
+
+// Path: chatTab
+class TranslationsChatTabEn {
+  TranslationsChatTabEn.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'Chat'
+  String get title => 'Chat';
+
+  /// en: 'No conversations yet. Start chatting with a nearby device from the Send tab.'
+  String get noConversations => 'No conversations yet.\nStart chatting with a nearby device from the Send tab.';
+
+  /// en: 'Type a message...'
+  String get inputHint => 'Type a message...';
+
+  /// en: 'Send'
+  String get send => 'Send';
+
+  /// en: 'Attach file'
+  String get attachFile => 'Attach file';
+
+  /// en: 'Delete conversation'
+  String get deleteConversation => 'Delete conversation';
+
+  /// en: 'Chat'
+  String get startChat => 'Chat';
 }
 
 // Path: sendTab
@@ -392,11 +423,8 @@ class TranslationsReceivePageEn {
   // Translations
 
   /// en: '(one) {wants to send you a file} (other) {wants to send you {n} files}'
-  String subTitle({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-    n,
-    one: 'wants to send you a file',
-    other: 'wants to send you ${n} files',
-  );
+  String subTitle({required num n}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'wants to send you a file', other: 'wants to send you ${n} files');
 
   /// en: 'sent you a message:'
   String get subTitleMessage => 'sent you a message:';

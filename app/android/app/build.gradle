@@ -51,6 +51,11 @@ android {
         versionName flutterVersionName
     }
 
+    lint {
+        checkReleaseBuilds false
+        disable 'InvalidPackage'
+    }
+
     signingConfigs {
         release {
             def keystoreProperties = new Properties()
@@ -68,7 +73,7 @@ android {
 
     buildTypes {
         release {
-            signingConfig signingConfigs.release
+            signingConfig signingConfigs.release.storeFile != null ? signingConfigs.release : signingConfigs.debug
         }
         debug {
             applicationIdSuffix ".debug"

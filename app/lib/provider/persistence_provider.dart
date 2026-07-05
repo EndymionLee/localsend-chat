@@ -11,6 +11,8 @@ import 'package:localsend_app/gen/strings.g.dart';
 import 'package:localsend_app/model/persistence/color_mode.dart';
 import 'package:localsend_app/model/persistence/favorite_device.dart';
 import 'package:localsend_app/model/persistence/receive_history_entry.dart';
+import 'package:localsend_app/model/chat_conversation.dart';
+import 'package:localsend_app/model/chat_group.dart';
 import 'package:localsend_app/model/send_mode.dart';
 import 'package:localsend_app/provider/window_dimensions_provider.dart';
 import 'package:localsend_app/util/alias_generator.dart';
@@ -54,6 +56,12 @@ const _stunServers = 'ls_stun_servers';
 // Received file history
 const _receiveHistory = 'ls_receive_history';
 
+// Chat history
+const _chatHistory = 'ls_chat_history';
+
+// Chat group history
+const _chatGroupHistory = 'ls_chat_group_history';
+
 // Favorites
 const _favorites = 'ls_favorites';
 
@@ -90,6 +98,7 @@ const _deviceType = 'ls_device_type';
 const _deviceModel = 'ls_device_model';
 const _shareViaLinkAutoAccept = 'ls_share_via_link_auto_accept';
 const _advancedSettingsKey = 'ls_advanced_settings';
+const _sharedClipboard = 'ls_shared_clipboard';
 
 final persistenceProvider = Provider<PersistenceService>((ref) {
   throw Exception('persistenceProvider not initialized');
@@ -257,6 +266,26 @@ class PersistenceService {
     await _prefs.setStringList(_receiveHistory, historyRaw);
   }
 
+  List<ChatConversation> getChatHistory() {
+    final historyRaw = _prefs.getStringList(_chatHistory) ?? [];
+    return historyRaw.map((entry) => ChatConversation.fromJson(jsonDecode(entry))).toList();
+  }
+
+  Future<void> setChatHistory(List<ChatConversation> entries) async {
+    final historyRaw = entries.map((entry) => jsonEncode(entry.toJson())).toList();
+    await _prefs.setStringList(_chatHistory, historyRaw);
+  }
+
+  List<ChatGroup> getChatGroupHistory() {
+    final raw = _prefs.getStringList(_chatGroupHistory) ?? [];
+    return raw.map((e) => ChatGroup.fromJson(jsonDecode(e))).toList();
+  }
+
+  Future<void> setChatGroupHistory(List<ChatGroup> entries) async {
+    final raw = entries.map((e) => jsonEncode(e.toJson())).toList();
+    await _prefs.setStringList(_chatGroupHistory, raw);
+  }
+
   List<FavoriteDevice> getFavorites() {
     final favoritesRaw = _prefs.getStringList(_favorites) ?? [];
     return favoritesRaw.map((entry) => FavoriteDevice.fromJson(jsonDecode(entry))).toList();
@@ -409,6 +438,14 @@ class PersistenceService {
 
   Future<void> setAdvancedSettingsEnabled(bool isEnabled) async {
     await _prefs.setBool(_advancedSettingsKey, isEnabled);
+  }
+
+  bool isSharedClipboard() {
+    return _prefs.getBool(_sharedClipboard) ?? false;
+  }
+
+  Future<void> setSharedClipboard(bool enabled) async {
+    await _prefs.setBool(_sharedClipboard, enabled);
   }
 
   bool isQuickSave() {

@@ -1,6 +1,6 @@
 {
   "locale": "English",
-  "appName": "LocalSend",
+  "appName": "LocalSend Chat",
   "general": {
     "accept": "Accept",
     "accepted": "Accepted",
@@ -53,6 +53,15 @@
       "favorites": "Favorites",
       "on": "@:general.on"
     }
+  },
+  "chatTab": {
+    "title": "Chat",
+    "noConversations": "No conversations yet.\nStart chatting with a nearby device from the Send tab.",
+    "inputHint": "Type a message...",
+    "send": "Send",
+    "attachFile": "Attach file",
+    "deleteConversation": "Delete conversation",
+    "startChat": "Chat"
   },
   "sendTab": {
     "title": "Send",
