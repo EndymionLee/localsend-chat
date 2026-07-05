@@ -6,7 +6,7 @@
 
 > 原项目：[https://github.com/localsend/localsend](https://github.com/localsend/localsend) | 官网：[https://localsend.org](https://localsend.org) | 协议：[Apache License 2.0](LICENSE)
 
-## 截图
+## 界面
 
 ### Windows 桌面端
 
