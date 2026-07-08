@@ -44,7 +44,7 @@ jobs:
           ANDROID_NDK_HOME: ${{ steps.setup-android.outputs.ndk-path }}
 
       - name: Upload APK
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: LocalSendChat-android
           path: app/build/app/outputs/flutter-apk/app-release.apk
@@ -77,7 +77,7 @@ jobs:
           Compress-Archive -Path app\build\windows\x64\runner\Release\* -DestinationPath LocalSendChat-windows.zip
 
       - name: Upload Windows
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: LocalSendChat-windows
           path: LocalSendChat-windows.zip
